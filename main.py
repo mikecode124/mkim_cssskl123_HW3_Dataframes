@@ -173,8 +173,10 @@ landmass_lang_area_pt = df1.pivot_table(index="landmass", columns="language",
                                         values="area", aggfunc="sum")
 
 print(landmass_lang_area_pt)
-# NaN represent combinations of landmass and language codes which do not exist
-# within the dataset.
-
+'''
+NaN represent combinations of landmass and language codes which do not exist within 
+the dataset. Or in other words, that the selected languages are not spoken inside 
+the specified land masses.
+'''
 
 # End of File
