@@ -140,7 +140,8 @@ country_lang = df1.loc[:, "language"]
 #print(country_lang)
 #print("\n")
 
-rep_lang = {"rep name": ["Max", "Jill", "Fong", "Juanita", "Nya"], "language": [1, 2, 5, 5, 8]}
+rep_lang = {"rep name": ["Max", "Jill", "Fong", "Juanita", "Nya"],
+            "language": [1, 2, 5, 5, 8]}
 #print(rep_lang)
 #print("\n")
 rep_df = pd.DataFrame(rep_lang)
@@ -168,7 +169,8 @@ print("\n")
 landmass_lang_are_gb = df1.groupby(["landmass", "language"])["area"].sum().unstack()
 
 # pivot table way:
-landmass_lang_area_pt = df1.pivot_table(index="landmass", columns="language", values="area", aggfunc="sum")
+landmass_lang_area_pt = df1.pivot_table(index="landmass", columns="language",
+                                        values="area", aggfunc="sum")
 
 print(landmass_lang_area_pt)
 # NaN represent combinations of landmass and language codes which do not exist
