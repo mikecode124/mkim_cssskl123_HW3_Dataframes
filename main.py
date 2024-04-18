@@ -22,12 +22,12 @@ import pandas as pd
 
 # --> Methods:
 
-def percent_of_mean(one_d):
+def sample(sample):
     ''
     # sample
-    mean_array = np.where(as_array > 0, (as_array / mean) * 100, error_fill)
+    sample = 2
 
-    return mean_array
+    return sample
 
 # --> Main:
 
@@ -164,5 +164,14 @@ print("\n")
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
+# groupby() way:
+landmass_lang_are_gb = df1.groupby(["landmass", "language"])["area"].sum().unstack()
+
+# pivot table way:
+landmass_lang_area_pt = df1.pivot_table(index="landmass", columns="language", values="area", aggfunc="sum")
+
+print(landmass_lang_area_pt)
+# NaN represent combinations of landmass and language codes which do not exist
+# within the dataset.
 
 #pass
