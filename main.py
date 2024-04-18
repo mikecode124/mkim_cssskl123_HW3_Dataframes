@@ -45,7 +45,7 @@ with open("flag.data", "r") as flagfile:
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
-    col_labels = [str("name"), "landmass", "zone", "area", "population", "language",
+    col_labels = ["name", "landmass", "zone", "area", "population", "language",
                   "religion", "bars", "stripes", "colours", "red", "green", "blue",
                   "gold", "white", "black", "orange", "mainhue", "circles", "crosses",
                   "saltires", "quarters", "sunstar", "crescent", "triangle", "icon",
@@ -65,3 +65,31 @@ with open("flag.data", "r") as flagfile:
     df1 = df0.copy()
     df1.columns = col_labels_s.astype(object)
     print(df1)
+
+# -----------------------------------------------------------------------------
+# Task #2:
+# - Loops restricted / List comprehension structures restricted
+# - Write 'percent_of_mean()'
+#   - Input is a 1-D array of numeric values
+#       - values represent the stock index for each day as a % of the
+#         mean value over the period covered by the list
+#   - Find mean of all values
+#   - Store representation of each value as a % of the mean
+# -----------------------------------------------------------------------------
+
+    print(df1.groupby("landmass").size())
+    print("\n")
+    # or more specifically
+    print("Number in N. America: " + str(df1.groupby("landmass").size().get(1)))
+
+# -----------------------------------------------------------------------------
+# Task #3:
+# - Loops restricted / List comprehension structures restricted
+# - Write 'percent_of_mean()'
+#   - Input is a 1-D array of numeric values
+#       - values represent the stock index for each day as a % of the
+#         mean value over the period covered by the list
+#   - Find mean of all values
+#   - Store representation of each value as a % of the mean
+# -----------------------------------------------------------------------------
+
