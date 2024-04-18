@@ -96,7 +96,8 @@ for x in range(1, len(df1.groupby("landmass").size()) + 1):
     print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
 
 print("\n")
-print("Without using explicit loops:\n" + str(df1.groupby("landmass").size()))
+print("Without using explicit loops:\n" + str(df1.groupby("landmass").size())
+      + "\n")
 
 # -----------------------------------------------------------------------------
 # Task #4:
@@ -121,9 +122,39 @@ allrows_pop_sub50 = df1[pop_sub50]
 
 lang_pop_sub50 = allrows_pop_sub50.groupby("language")["population"].sum().sort_values(ascending=False)
 print(lang_pop_sub50)
+print("\n")
 
 # -----------------------------------------------------------------------------
 # Task #5:
+# - Loops restricted / List comprehension structures restricted
+# - Write 'percent_of_mean()'
+#   - Input is a 1-D array of numeric values
+#       - values represent the stock index for each day as a % of the
+#         mean value over the period covered by the list
+#   - Find mean of all values
+#   - Store representation of each value as a % of the mean
+# -----------------------------------------------------------------------------
+
+
+country_lang = df1.loc[:, "language"]
+#print(country_lang)
+#print("\n")
+
+rep_lang = {"rep name": ["Max", "Jill", "Fong", "Juanita", "Nya"], "language": [1, 2, 5, 5, 8]}
+#print(rep_lang)
+#print("\n")
+rep_df = pd.DataFrame(rep_lang)
+#print(rep_df)
+#print("\n")
+
+#country_rep_lang = pd.merge(country_lang, rep_df, left_on="rep lang", right_on="language")
+# rather than use left/right_on parameters I renamed the dictionary to have a matching label
+country_rep_lang = pd.merge(country_lang, rep_df)
+print("Total representative-countries: " + str(len(country_rep_lang)))  #91
+print("\n")
+
+# -----------------------------------------------------------------------------
+# Task #6:
 # - Loops restricted / List comprehension structures restricted
 # - Write 'percent_of_mean()'
 #   - Input is a 1-D array of numeric values
