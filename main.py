@@ -18,7 +18,6 @@
 # --> Import module:
 
 import numpy as np
-import data
 import pandas as pd
 
 # --> Methods:
@@ -32,6 +31,9 @@ def percent_of_mean(one_d):
 
 # --> Main:
 
+with open("flag.data", "r") as flagfile:
+
+
 # -----------------------------------------------------------------------------
 # Task #1:
 # - Loops restricted / List comprehension structures restricted
@@ -42,3 +44,24 @@ def percent_of_mean(one_d):
 #   - Find mean of all values
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
+
+    col_labels = [str("name"), "landmass", "zone", "area", "population", "language",
+                  "religion", "bars", "stripes", "colours", "red", "green", "blue",
+                  "gold", "white", "black", "orange", "mainhue", "circles", "crosses",
+                  "saltires", "quarters", "sunstar", "crescent", "triangle", "icon",
+                  "animate", "text", "topleft", "botright"]
+
+    print("number of column labels: " + str(len(col_labels)))
+
+    col_labels_s = pd.Series(col_labels)
+    print("\n")
+    print(col_labels_s)
+
+    df0 = pd.read_csv(flagfile, header=None)
+    print("rows, cols of dataset: " + str(np.shape(df0)))
+    print(df0.dtypes)
+    print("\n")
+
+    df1 = df0.copy()
+    df1.columns = col_labels_s.astype(object)
+    print(df1)
