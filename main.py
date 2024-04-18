@@ -77,6 +77,7 @@ df1.columns = col_labels_s.astype(object)
 
 # print(df1.groupby("landmass").size())
 
+print("*** Task 2 ***")
 # group and count all the elements in landmass col that == 1
 print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
       + "\n")  # should be: 31
@@ -89,14 +90,17 @@ print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
 #       and once without using explicit loops
 # -----------------------------------------------------------------------------
 
+
+print("*** Task 3 ***")
 # print(len(df1.groupby("landmass").size()))
 print("Using explicit loops:")
+
 # iterate from 1 to the total # of elements in landmass
 for x in range(1, len(df1.groupby("landmass").size()) + 1):
     # iterate variable x to print total occurrences of each single int code
     print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
 
-print("\n")
+print("---")
 # get and print ALL int codes and their total occurrences in column landmass
 print("Without using explicit loops:\n" + str(df1.groupby("landmass").size())
       + "\n")
@@ -121,8 +125,9 @@ We then call the .sort_values() method with an acending=False argument to sort t
 resulting values highest to lowest.
 '''
 lang_pop = df1.groupby("language")["population"].sum().sort_values(ascending=False)
+print("*** Task 4 ***")
 print(lang_pop)
-print("\n")
+print("---")
 
 # create a boolean mask of all entries in population column that are less than 50
 pop_sub50 = df1["population"] < 50
@@ -177,6 +182,7 @@ rep_df = pd.DataFrame(rep_lang)
 # rather than use left/right_on parameters I renamed the dictionary to have a matching label
 country_rep_lang = pd.merge(country_lang, rep_df)  # merge "language" and dict dataframe
 
+print("*** Task 5 ***")
 # print the total number of rows/countries that are covered/paired
 print("Total representative-countries: " + str(len(country_rep_lang)))  # should be: 91
 print("\n")
@@ -204,6 +210,8 @@ language int codes, then summing their area values if a match is found.
 '''
 landmass_lang_area_pt = df1.pivot_table(index="landmass", columns="language",
                                         values="area", aggfunc="sum")
+print("*** Task 6 ***")
+
 
 # print the created pivot table, result should be identical to groupby() way
 print(landmass_lang_area_pt)
