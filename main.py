@@ -42,6 +42,7 @@ def percent_of_mean(one_d):
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
+
 col_labels = ["name", "landmass", "zone", "area", "population", "language",
                   "religion", "bars", "stripes", "colours", "red", "green", "blue",
                   "gold", "white", "black", "orange", "mainhue", "circles", "crosses",
@@ -72,11 +73,11 @@ df1.columns = col_labels_s.astype(object)
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
-    #print(df1.groupby("landmass").size())
-    # or more specifically
+
+#print(df1.groupby("landmass").size())
+# or more specifically
 print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
-        + "\n")
-    # 31
+        + "\n")  # 31
 
 # -----------------------------------------------------------------------------
 # Task #3:
@@ -88,7 +89,8 @@ print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
 #   - Find mean of all values
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
-    #print(len(df1.groupby("landmass").size()))
+
+#print(len(df1.groupby("landmass").size()))
 print("Using explicit loops:")
 for x in range(1, len(df1.groupby("landmass").size()) + 1):
     print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
@@ -107,3 +109,29 @@ print("Without using explicit loops:\n" + str(df1.groupby("landmass").size()))
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
+
+lang_pop = df1.groupby("language")["population"].sum().sort_values(ascending=False)
+print(lang_pop)
+print("\n")
+
+pop_sub50 = df1["population"] < 50
+allrows_pop_sub50 = df1[pop_sub50]
+#print(allrows_pop_sub50)
+#print("\n")
+
+lang_pop_sub50 = allrows_pop_sub50.groupby("language")["population"].sum().sort_values(ascending=False)
+print(lang_pop_sub50)
+
+# -----------------------------------------------------------------------------
+# Task #5:
+# - Loops restricted / List comprehension structures restricted
+# - Write 'percent_of_mean()'
+#   - Input is a 1-D array of numeric values
+#       - values represent the stock index for each day as a % of the
+#         mean value over the period covered by the list
+#   - Find mean of all values
+#   - Store representation of each value as a % of the mean
+# -----------------------------------------------------------------------------
+
+
+#pass
