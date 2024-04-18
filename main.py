@@ -31,9 +31,6 @@ def percent_of_mean(one_d):
 
 # --> Main:
 
-with open("flag.data", "r") as flagfile:
-
-
 # -----------------------------------------------------------------------------
 # Task #1:
 # - Loops restricted / List comprehension structures restricted
@@ -45,23 +42,24 @@ with open("flag.data", "r") as flagfile:
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
-    col_labels = ["name", "landmass", "zone", "area", "population", "language",
+col_labels = ["name", "landmass", "zone", "area", "population", "language",
                   "religion", "bars", "stripes", "colours", "red", "green", "blue",
                   "gold", "white", "black", "orange", "mainhue", "circles", "crosses",
                   "saltires", "quarters", "sunstar", "crescent", "triangle", "icon",
                   "animate", "text", "topleft", "botright"]
 
-    #print("number of column labels: " + str(len(col_labels)))
+#print("number of column labels: " + str(len(col_labels)))
 
-    col_labels_s = pd.Series(col_labels)
+col_labels_s = pd.Series(col_labels)
 
+with open("flag.data", "r") as flagfile:
     df0 = pd.read_csv(flagfile, header=None)
     #print("rows, cols of dataset: " + str(np.shape(df0)))
     #print(df0.dtypes)
 
-    df1 = df0.copy()
-    df1.columns = col_labels_s.astype(object)
-    #print(df1.head())
+df1 = df0.copy()
+df1.columns = col_labels_s.astype(object)
+#print(df1.head())
 
 # -----------------------------------------------------------------------------
 # Task #2:
@@ -76,8 +74,8 @@ with open("flag.data", "r") as flagfile:
 
     #print(df1.groupby("landmass").size())
     # or more specifically
-    print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
-          + "\n")
+print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
+        + "\n")
     # 31
 
 # -----------------------------------------------------------------------------
@@ -91,12 +89,12 @@ with open("flag.data", "r") as flagfile:
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
     #print(len(df1.groupby("landmass").size()))
-    print("Using explicit loops:")
-    for x in range(1, len(df1.groupby("landmass").size()) + 1):
-        print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
+print("Using explicit loops:")
+for x in range(1, len(df1.groupby("landmass").size()) + 1):
+    print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
 
-    print("\n")
-    print("Without using explicit loops:\n" + str(df1.groupby("landmass").size()))
+print("\n")
+print("Without using explicit loops:\n" + str(df1.groupby("landmass").size()))
 
 # -----------------------------------------------------------------------------
 # Task #4:
