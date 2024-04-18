@@ -51,20 +51,17 @@ with open("flag.data", "r") as flagfile:
                   "saltires", "quarters", "sunstar", "crescent", "triangle", "icon",
                   "animate", "text", "topleft", "botright"]
 
-    print("number of column labels: " + str(len(col_labels)))
+    #print("number of column labels: " + str(len(col_labels)))
 
     col_labels_s = pd.Series(col_labels)
-    print("\n")
-    print(col_labels_s)
 
     df0 = pd.read_csv(flagfile, header=None)
-    print("rows, cols of dataset: " + str(np.shape(df0)))
-    print(df0.dtypes)
-    print("\n")
+    #print("rows, cols of dataset: " + str(np.shape(df0)))
+    #print(df0.dtypes)
 
     df1 = df0.copy()
     df1.columns = col_labels_s.astype(object)
-    print(df1)
+    #print(df1.head())
 
 # -----------------------------------------------------------------------------
 # Task #2:
@@ -77,13 +74,32 @@ with open("flag.data", "r") as flagfile:
 #   - Store representation of each value as a % of the mean
 # -----------------------------------------------------------------------------
 
-    print(df1.groupby("landmass").size())
-    print("\n")
+    #print(df1.groupby("landmass").size())
     # or more specifically
-    print("Number in N. America: " + str(df1.groupby("landmass").size().get(1)))
+    print("Number in N. America: " + str(df1.groupby("landmass").size().get(1))
+          + "\n")
+    # 31
 
 # -----------------------------------------------------------------------------
 # Task #3:
+# - Loops restricted / List comprehension structures restricted
+# - Write 'percent_of_mean()'
+#   - Input is a 1-D array of numeric values
+#       - values represent the stock index for each day as a % of the
+#         mean value over the period covered by the list
+#   - Find mean of all values
+#   - Store representation of each value as a % of the mean
+# -----------------------------------------------------------------------------
+    #print(len(df1.groupby("landmass").size()))
+    print("Using explicit loops:")
+    for x in range(1, len(df1.groupby("landmass").size()) + 1):
+        print(str(x) + "\t " + str(df1.groupby("landmass").size().get(x)))
+
+    print("\n")
+    print("Without using explicit loops:\n" + str(df1.groupby("landmass").size()))
+
+# -----------------------------------------------------------------------------
+# Task #4:
 # - Loops restricted / List comprehension structures restricted
 # - Write 'percent_of_mean()'
 #   - Input is a 1-D array of numeric values
